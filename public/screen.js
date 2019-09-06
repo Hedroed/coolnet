@@ -303,7 +303,7 @@
                 
                 if (root.onNumberOfParticipantsChanged) root.onNumberOfParticipantsChanged(Object.keys(peers).length);
             },
-            onaddstream: function(stream, _userid, _username) {
+            onaddstream: function(stream, _userid, _name) {
                 //Add video to receiver
                 // console.debug('onaddstream >>>>>>', stream);
                 console.log("Receiver add video");
@@ -334,7 +334,7 @@
                     stream: stream,
                     userid: _userid,
                     type: 'remote',
-                    name: _username
+                    name: _name
                 });
             }
         };

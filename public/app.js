@@ -78,10 +78,10 @@ screensharing.onscreen = function(_screen) {
 // on getting each new screen
 screensharing.onaddstream = function(media) {
     media.video.id = media.userid
-    let username = media.username
+    let name = media.name
 
     videoTitle.removeChild(videoTitle.firstChild)
-    let t = document.createTextNode("You are viewing " + username + "'s screen")
+    let t = document.createTextNode("You are viewing " + name + "'s screen")
     videoTitle.appendChild(t)
 
     var video = media.video
