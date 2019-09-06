@@ -1,0 +1,60 @@
+<!--
+> Muaz Khan     - https://github.com/muaz-khan
+> MIT License   - https://www.webrtc-experiment.com/licence/
+> Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/screen-sharing
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>WebRTC Screen Sharing</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <link rel="stylesheet" href="https://www.webrtc-experiment.com/style.css">
+        <link rel="stylesheet" href="/styles.css">
+
+    </head>
+
+    <body>
+        <header>
+            <h2>Cool'net</h2>
+            <button id="back">Retour</button>
+        </header>
+
+        <section id="lobby" class="experiment">
+            <div class="join">
+                <input type="text" id="user-name" placeholder="Your Name">
+                <button id="share-screen" class="setup">Share Your Screen</button>
+            </div>
+            <!-- list of all available broadcasting rooms -->
+            <div id="rooms-list"></div>
+
+            <div class="options">
+                <label for="autoplay">Auto play</label>
+                <input type="checkbox" name="autoplay" id="autoplay">
+            </div>
+        </section>
+
+        <section id="video" class="experiment video hidden">
+            <!-- local/remote videos container -->
+            <div id="videos-container"></div>
+
+            <div id="number-of-participants"></div>
+        </section>
+
+
+        <!-- scripts used for screen-sharing -->
+        <script src="/socket.io/socket.io.js"> </script>
+        
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+        <script src="/libs/IceServersHandler.js"></script>
+        <script src="/libs/CodecsHandler.js"></script>
+        <script src="/libs/BandwidthHandler.js"></script>
+        <script src="/libs/getScreenId.js"></script>
+        <script src="/screen.js"></script>
+        <script src="/app.js"></script>
+    </body>
+</html>
