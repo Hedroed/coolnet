@@ -2,6 +2,7 @@ const lobbyElem = document.getElementById('lobby')
 const videoElem = document.getElementById('video')
 
 const videosContainer = document.getElementById('videos-container')
+const videoTitle = document.getElementById('video-title')
 const roomsList = document.getElementById('rooms-list')
 const autoplay = document.getElementById('autoplay')
 const back = document.getElementById('back')
@@ -77,6 +78,11 @@ screensharing.onscreen = function(_screen) {
 // on getting each new screen
 screensharing.onaddstream = function(media) {
     media.video.id = media.userid
+    let username = media.username
+
+    videoTitle.removeChild(videoTitle.firstChild)
+    let t = document.createTextNode("You are viewing " + username + "'s screen")
+    videoTitle.appendChild(t)
 
     var video = media.video
     videosContainer.appendChild(video)

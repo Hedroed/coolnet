@@ -92,7 +92,8 @@
                         video: video,
                         stream: stream,
                         userid: 'self',
-                        type: 'local'
+                        type: 'local',
+                        name: 'Your'
                     });
 
                     callback(stream);
@@ -151,7 +152,8 @@
                         video: video,
                         stream: stream,
                         userid: 'self',
-                        type: 'local'
+                        type: 'local',
+                        name: 'Your'
                     });
 
                     callback(stream);
@@ -251,6 +253,7 @@
                 _options.stream = root.stream;
                 _options.sdp = sdp;
                 _options.to = message.userid;
+                _options.name = message.name;
                 peers[message.userid] = Answer.createAnswer(_options);
             } else if (sdp.type == 'answer') {
                 peers[message.userid].setRemoteDescription(sdp);
@@ -300,7 +303,7 @@
                 
                 if (root.onNumberOfParticipantsChanged) root.onNumberOfParticipantsChanged(Object.keys(peers).length);
             },
-            onaddstream: function(stream, _userid) {
+            onaddstream: function(stream, _userid, _username) {
                 //Add video to receiver
                 // console.debug('onaddstream >>>>>>', stream);
                 console.log("Receiver add video");
@@ -330,7 +333,8 @@
                     video: video,
                     stream: stream,
                     userid: _userid,
-                    type: 'remote'
+                    type: 'remote',
+                    name: _username
                 });
             }
         };
@@ -577,7 +581,7 @@
 
             if('addStream' in peer) {
                 peer.onaddstream = function(event) {
-                    config.onaddstream(event.stream, config.to);
+                    config.onaddstream(event.stream, config.to, config.name);
                 };
             }
             else if('addTrack' in peer) {
@@ -587,7 +591,7 @@
                     if(dontDuplicateOnAddTrack[event.stream.id] && adapter.browserDetails.browser !== 'safari') return;
                     dontDuplicateOnAddTrack[event.stream.id] = true;
 
-                    config.onaddstream(event.stream, config.to);
+                    config.onaddstream(event.stream, config.to, config.name);
                 };
             }
             else {
